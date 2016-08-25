@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:DriverLog.Converters;assembly=DriverLog"
+             x:Class="DriverLog.Pages.LobbyPage"
+             Title="Driver Log">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="Inverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="40">
+        <Label Text="Day-time hours" HorizontalTextAlignment="Center"/>
+        <ProgressBar Progress="{Binding DayHoursPercent}"/>
+
+        <Label Text="Night hours" HorizontalTextAlignment="Center"/>
+        <ProgressBar Progress="{Binding NightHoursPercent}"/>
+
+        <Label Text="Learning goals" HorizontalTextAlignment="Center"/>
+        <ProgressBar Progress="{Binding LearningGoalsPercent}"/>
+
+        <Label Text="{Binding Supervisor}" FontSize="12"/>
+        <Button Text="Supervisor Login" Clicked="Login" FontSize="15" IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}" WidthRequest="200" HeightRequest="50"/>
+        <Button Text="Start Trip" Clicked="Start" FontSize="15" IsVisible="{Binding IsLoggedIn}" WidthRequest="200" HeightRequest="50"/>
+    </StackLayout>
+
+</ContentPage>
